@@ -8,12 +8,13 @@ terraform {
   required_providers {
     aws = "~> 3.0"
   }
-}
+  backend "s3" {
+    bucket = "nyeisterraformstatedata2"
+    key = "api_gateway/terraform.tf"
+    region = "us-east-2"
 
-
-resource "aws_api_gateway_rest_api" "first_api" {
-  name = "first-api"
-  tags = {
-    By = "Terraform"
+    dynamodb_table = "terraform-up-and-running-locks-2"
+    encrypt = true
   }
 }
+
