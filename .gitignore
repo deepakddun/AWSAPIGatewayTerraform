@@ -1,3 +1,12 @@
 .terraform/
 .terraform.lock.hcl
 .idea/
+venv/
+api-gateway/.terraform/
+lambda/common/.terraform/
+lambda/get_average_rating_lambda/.terraform/
+s3/.terraform/
+
+
+
+

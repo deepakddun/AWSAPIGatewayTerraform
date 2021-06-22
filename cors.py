@@ -125,7 +125,7 @@ options_integration_response = client.put_integration_response(
     restApiId=ID,
     resourceId=create_report_id,
     httpMethod='OPTIONS',
-    statusCode='200',
+    statusCode=200,
     responseParameters={
         'method.response.header.Access-Control-Allow-Headers': '\'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token\'',
         'method.response.header.Access-Control-Allow-Methods': '\'POST,OPTIONS\'',
