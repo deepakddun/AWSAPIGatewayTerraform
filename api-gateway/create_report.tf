@@ -43,7 +43,7 @@ resource "aws_api_gateway_integration_response" "create_report_integration_respo
     "method.response.header.Access-Control-Allow-Methods" : "'POST'",
     "method.response.header.Access-Control-Allow-Origin" : "'*'",
   }
-  depends_on = [aws_api_gateway_integration.create_report_integration , aws_api_gateway_method_response.create_report_method_response]
+  depends_on = [aws_api_gateway_integration.create_report_integration, aws_api_gateway_method_response.create_report_method_response]
 }
 
 resource "aws_api_gateway_method_response" "create_report_method_response" {

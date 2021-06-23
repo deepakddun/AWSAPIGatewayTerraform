@@ -10,7 +10,7 @@ terraform {
   }
   backend "s3" {
     bucket = "nyeisterraformstatedata2"
-    key    = "api_gateway/terraform_api_gateway.tf"
+    key    = "api_gateway/terraform_api_gateway.tfstate"
     region = "us-east-2"
 
     dynamodb_table = "terraform-up-and-running-locks-2"
