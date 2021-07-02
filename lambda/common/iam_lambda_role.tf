@@ -11,7 +11,7 @@ terraform {
 
   backend "s3" {
     bucket = "nyeisterraformstatedata2"
-    key    = "api_gateway/common_role/terraform_api_gateway_lambda_role.tf"
+    key    = "api_gateway/common_role/terraform_api_gateway_lambda_role.tfstate"
     region = "us-east-2"
 
     dynamodb_table = "terraform-up-and-running-locks-2"
@@ -28,7 +28,7 @@ locals {
 }
 
 resource "aws_iam_role" "common_lambda_role" {
-  name = "common_lambda_role_s3_api_gateway"
+  name = "common_lambda_role_s3_api_gateway_2"
   assume_role_policy = jsonencode(
     {
       Version : "2012-10-17",
@@ -47,7 +47,7 @@ resource "aws_iam_role" "common_lambda_role" {
 }
 
 resource "aws_iam_policy" "common_lambda_policy" {
-  name = "common_lambda_policy"
+  name = "common_lambda_policy_2"
   policy = jsonencode({
     Version = "2012-10-17"
     Statement = [
@@ -59,10 +59,24 @@ resource "aws_iam_policy" "common_lambda_policy" {
         ]
         Effect = "Allow"
         Resource = [
-          "${local.bucket_name}",
+          local.bucket_name,
           "${local.bucket_name}/*",
+          "arn:aws:s3:::uat-data-demographics-nice-source/report.html"
         ]
       },
+      {
+            Action: [
+                "autoscaling:Describe*",
+                "cloudwatch:*",
+                "logs:*",
+                "sns:*",
+                "iam:GetPolicy",
+                "iam:GetPolicyVersion",
+                "iam:GetRole"
+            ],
+            Effect: "Allow",
+            Resource: "*"
+        }
     ]
 
 

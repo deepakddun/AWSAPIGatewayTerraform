@@ -6,7 +6,7 @@ import os
 def handler(event, context):
     BUCKET_NAME = os.getenv('BUCKET_NAME', 'api-gateway-product-bucket')
     KEY_NAME = os.getenv('S3_FILE', 'product_review.json')
-
+    print(event)
     reviewerID = event['product_id_str'] or 'A2SUAM1J3GNN3B'
 
     s3 = boto3.client('s3', region_name='us-east-2')
@@ -38,3 +38,5 @@ def handler(event, context):
     }
 
     return return_object
+
+

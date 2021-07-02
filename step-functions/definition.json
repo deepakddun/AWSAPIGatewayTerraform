@@ -1,0 +1,16 @@
+{
+  "Comment": "This functions will invoke lambda functions for validation and creation of child data",
+  "StartAt": "Validate",
+  "States": {
+    "Validate": {
+      "Type": "Task",
+      "Resource": "arn:aws:lambda:us-east-2:427128480243:function:validate",
+      "Next": "CreatePresignedUrl"
+    },
+    "CreatePresignedUrl": {
+      "Type": "Task",
+      "Resource": "arn:aws:lambda:us-east-2:427128480243:function:pre_signed_url",
+      "End": true
+    }
+  }
+}

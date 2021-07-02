@@ -11,7 +11,7 @@ terraform {
   backend "s3" {
 
     bucket = "nyeisterraformstatedata2"
-    key    = "api_gateway/lambda_function/terraform_api_gateway_lambda_get_rating.tf"
+    key    = "api_gateway/lambda_function/terraform_api_gateway_lambda_get_rating.tfstate"
     region = "us-east-2"
 
     dynamodb_table = "terraform-up-and-running-locks-2"
