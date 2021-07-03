@@ -9,8 +9,15 @@ resource "aws_iam_policy" "lambda_step_functions_policy_terraform" {
             Effect: "Allow",
             Action: "lambda:InvokeFunction",
             Resource: "arn:aws:lambda:*:427128480243:function:*"
+        },
+      {
+
+            Effect: "Allow",
+            Action: "sns:Publish",
+            Resource: "arn:aws:sns:*:427128480243:*"
         }
     ]
+
 })
 }
 

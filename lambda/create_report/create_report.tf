@@ -39,5 +39,11 @@ resource "aws_lambda_function" "get_average_rating_lambda" {
 
   runtime = "python3.8"
 
+  environment {
+    variables = {
+      STEP_ARN = "arn:aws:states:us-east-2:427128480243:stateMachine:my-state-machine"
+    }
+  }
+
   depends_on = [data.archive_file.zip_file]
 }

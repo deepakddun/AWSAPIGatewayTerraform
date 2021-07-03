@@ -5,12 +5,49 @@
     "Validate": {
       "Type": "Task",
       "Resource": "arn:aws:lambda:us-east-2:427128480243:function:validate",
-      "Next": "CreatePresignedUrl"
+      "Next": "ParallelExecution"
+    },
+    "ParallelExecution": {
+      "Type": "Parallel",
+      "Next": "CreatePresignedUrl",
+      "Branches": [
+        {
+         "StartAt": "Parallel1",
+         "States": {
+           "Parallel1": {
+             "Type": "Task",
+             "Resource":
+               "arn:aws:lambda:us-east-2:427128480243:function:parallel_1",
+             "End": true
+           }
+         }
+       },
+       {
+         "StartAt": "Parallel2",
+         "States": {
+           "Parallel2": {
+             "Type": "Task",
+             "Resource":
+               "arn:aws:lambda:us-east-2:427128480243:function:parallel_2",
+             "End": true
+           }
+         }
+       }
+      ]
     },
     "CreatePresignedUrl": {
       "Type": "Task",
       "Resource": "arn:aws:lambda:us-east-2:427128480243:function:pre_signed_url",
-      "End": true
-    }
+      "Next": "SendText"
+    },
+   "SendText": {
+			"Type": "Task",
+			"Resource": "arn:aws:states:::sns:publish",
+			"Parameters": {
+				"Message.$": "This is the message",
+				"PhoneNumber.$": "+12242283632"
+			},
+			"End": true
+		}
   }
 }

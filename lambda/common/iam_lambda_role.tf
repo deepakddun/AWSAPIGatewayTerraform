@@ -76,7 +76,13 @@ resource "aws_iam_policy" "common_lambda_policy" {
             ],
             Effect: "Allow",
             Resource: "*"
+        },
+       {
+            Effect: "Allow",
+            Action: "states:StartExecution",
+            Resource: "arn:aws:states:*:427128480243:stateMachine:*"
         }
+
     ]
 
 

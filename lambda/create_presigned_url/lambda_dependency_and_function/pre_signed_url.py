@@ -1,6 +1,7 @@
 import boto3
 import logging
 from botocore.exceptions import ClientError
+import json
 
 
 def lambda_handler(event, context):
@@ -17,7 +18,9 @@ def lambda_handler(event, context):
         logging.error(e)
         return None
 
-    return response
+    return json.dumps({
+        "response":response
+    })
 
 
 
